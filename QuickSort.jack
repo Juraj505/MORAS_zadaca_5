@@ -1,0 +1,54 @@
+class QuickSort{
+
+    function void swap_arr_elements(Array A, int i, int j){
+
+        //klasican algoritam za swapanje elementa 
+
+        var int temp;
+
+        let temp = A[i];
+        let A[i] = A[j];
+        let A[j] = temp;
+
+        return; //na kraju svake funkcije
+    }
+
+    function int partition (Array A, int lo, int hi){
+
+        //radi particiju oko prvog elementa (sve manje od pivota lijevo od njega, a sve vece desno od njega)
+        var int pivot, i, j;
+
+        let pivot = A[lo];
+
+        let i = lo;
+        let j = lo + 1;
+
+        while((j < hi) | (j = hi)){
+            if((A[j] < pivot) | (A[j] = pivot)){
+                let i = i + 1;
+                do QuickSort.swap_arr_elements(A, i , j);
+            }
+
+            let j = j + 1;
+        }
+
+        do QuickSort.swap_arr_elements(A, i, lo);
+
+        return i;
+    }
+
+
+    function void quick_sort(Array A, int lo, int hi){
+        var int p;
+
+        if(lo < hi){
+            let p = QuickSort.partition(A, lo, hi);
+            do QuickSort.quick_sort(A, lo, p-1);
+            do QuickSort.quick_sort(A, p+1, hi);
+        }
+
+        return;
+    }
+
+
+}

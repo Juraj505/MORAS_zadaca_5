@@ -1,0 +1,148 @@
+class Vint{
+
+    field int capacity;
+    field Array vector_int;
+
+    function int pow_2_n(int n){
+        var int product, i;
+
+        let product = 1;
+        let i = 0;
+
+        while (i < n) {
+            let product = product * 2;
+            let i = i + 1;
+        }
+
+        return product;
+    }
+
+    constructor Vint new(int n){
+        if(n < 0){
+            let capacity = 1;
+        }
+        else{
+            let capacity = Vint.pow_2_n(n);
+        }
+
+        let vector_int = Array.new(capacity);
+
+        return this;
+
+    }
+
+    method int len(){
+        return capacity;
+    }
+
+
+    method void set(int k, int v){
+
+        if(k > -1 & k < capacity){  //ako k mora bit > -1 znaci da je barem 0 što odgovara za 0-indeksirano polje
+            let vector_int[k] = v;
+
+            return;
+
+        } 
+
+        do Output.printString("Index out of range!");
+        do Output.println();
+
+        return;
+            
+    
+
+    }
+
+    method int get(int k){
+        if(k > -1 i k < capacity){
+            return vector_int[k];
+        }
+
+        do Output.printString("Index out of range!");
+        do Output.println();
+
+        return -1;
+
+
+    }
+
+
+    function bool is_eq(Vint v1, Vint v2){
+        var int i;
+
+        if(~(v1.len() = v2.len())){
+            return false;
+        }
+
+        let i = 0;
+
+        while(i < v1.len()){
+
+            if(~(v1.get(i) = v2.get(i))){
+                return false;
+            }
+
+            let i = i+1;
+        }
+
+        return true;
+
+    
+    }
+
+    method Array get_vec_int(){
+        return vector_int;
+    }
+
+    function bool elems(Vint v1, Vint v2){
+        var Array v, w;
+        var int i;
+
+        if(v1.len() = v2.len()){
+            let v = v1.get_vec_int();
+            let w = v2.get_vec_int();
+
+            do QuickSort.quick_sort(v, 0, v1.len() - 1);
+            do QuickSort.quick_sort(w, 0, v2.len() - 1);
+
+            let i = 0;
+
+            while(i < v1.len()){
+
+            if(~(v1.get(i) = v2.get(i))){
+                return false;
+            }
+
+            let i = i+1;
+        }
+
+        return true;
+
+        }
+
+        return false;
+    
+
+    }
+
+    method void print_vec_int() {
+        var int i;
+
+        let i = 0;
+
+        while (i < capacity) {
+            do Output.printInt(vector_int[i]);
+            do Output.printString(" ");
+
+            let i = i + 1;
+        }
+
+        do Output.println();
+
+        return;
+    }
+
+
+
+}
